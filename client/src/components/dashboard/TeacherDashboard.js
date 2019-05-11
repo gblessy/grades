@@ -33,6 +33,9 @@ class TeacherDashboard extends Component {
             ))}
           </tbody>
         </table>
+        <Link className="btn btn-success mr-5" to="/addlesson">
+          AddLesson
+        </Link>
         <p className="lead">{this.props.auth.user.name} Notifications:</p>
         <table className="table">
           <thead>
@@ -50,15 +53,13 @@ class TeacherDashboard extends Component {
           </tbody>
         </table>
         <div className="container">
-          <Link className="btn btn-success mr-5" to="/notifications">
-            Notifications
+          <Link className="btn btn-success mr-5" to="/addteacher">
+            AddTeacher
           </Link>
           <Link className="btn btn-success mr-5" to="/lessons">
             Lessons
           </Link>
-          <Link className="btn btn-success mr-5" to="/materials">
-            Materials
-          </Link>
+
           <Link className="btn btn-success mr-5" to="/homework">
             Homework
           </Link>

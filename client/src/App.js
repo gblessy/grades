@@ -20,6 +20,9 @@ import Homework from "./components/homework/Homework";
 import "./App.css";
 import Materials from "./components/materials/Materials";
 import Schedule from "./components/schedule/Schedule";
+import LessonDashboard from "./components/dashboard/LessonDashboard";
+import AddTeacher from "./components/teacher/AddTeacher";
+import AddLesson from "./components/lessons/AddLesson";
 
 // Check for Token
 if (localStorage.jwtToken) {
@@ -53,10 +56,13 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/lessons" component={Lessons} />
+            <Route exact path="/lessondashboard" component={LessonDashboard} />
             <Route exact path="/notifications" component={Notifications} />
             <Route exact path="/homework" component={Homework} />
             <Route exact path="/materials" component={Materials} />
             <Route exact path="/schedule" component={Schedule} />
+            <Route exact path="/addlesson" component={AddLesson} />
+            <Route exact path="/addteacher" component={AddTeacher} />
             <Footer />
           </div>
         </Router>

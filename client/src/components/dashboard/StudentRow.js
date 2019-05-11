@@ -4,30 +4,36 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActons";
 import { Link } from "react-router-dom";
 
-class LessonRow extends Component {
+class StudentRow extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
   render() {
-    const { lesson } = this.props;
+    const { student, onClick } = this.props;
 
     return (
       <>
         <tr>
-          <th scope="row">{lesson.count}</th>
+          <th scope="row">{student.count}</th>
+          <td>{student.name}</td>
+          <td>{student.surname}</td>
+          <td>{student.grade}</td>
           <td>
-            <Link to="/lessondashboard">{lesson.name}</Link>
+            <button
+              className="btn btn-success"
+              onClick={onClick.bind(this, 4, student)}
+            >
+              Add Grade
+            </button>
           </td>
-          <td>{lesson.form}</td>
-          <td>{lesson.time}</td>
         </tr>
       </>
     );
   }
 }
 
-LessonRow.propTypes = {
+StudentRow.propTypes = {
   auth: propTypes.object.isRequired
 };
 
@@ -38,4 +44,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCurrentProfile }
-)(LessonRow);
+)(StudentRow);

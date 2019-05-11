@@ -11,7 +11,7 @@ class Dashboard extends Component {
   }
 
   auth = {
-    type: "parent"
+    type: "teacher"
   };
 
   lessons = [
