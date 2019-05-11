@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActons";
 import TeachersDashboard from "./TeacherDashboard";
+import ParentDashboard from "./ParentDashboard";
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
+
+  auth = {
+    type: "parent"
+  };
 
   lessons = [
     { count: 1, name: "Mathematics", form: "4B", time: "8.15-9.00" },
@@ -32,6 +36,49 @@ class Dashboard extends Component {
       time: "9.10"
     }
   ];
+
+  homework = [
+    {
+      count: 1,
+      lesson: "Mathematics",
+      homework: "Ex. 2, pg. 55",
+      book: "ClassBook1"
+    },
+    {
+      count: 2,
+      lesson: "Physics",
+      homework: "Ex. 7, pg. 54",
+      book: "ClassBook3"
+    },
+    {
+      count: 3,
+      lesson: "Literature",
+      homework: "pg. 80",
+      book: "ClassBook7"
+    }
+  ];
+
+  marks = [
+    {
+      count: 1,
+      lesson: "Mathematics",
+      mark: 5,
+      day: "11.05.2019"
+    },
+    {
+      count: 2,
+      lesson: "Physics",
+      mark: 4,
+      day: "11.05.2019"
+    },
+    {
+      count: 1,
+      lesson: "Literature",
+      mark: 3,
+      day: "11.05.2019"
+    }
+  ];
+
   render() {
     return (
       <div className="landing">
@@ -39,11 +86,20 @@ class Dashboard extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <div className="jumbotron bg-dark">
-                  <TeachersDashboard
-                    lessons={this.lessons}
-                    notifications={this.notifications}
-                  />
+                <div className="card bg-dark">
+                  {this.auth.type === "teacher" && (
+                    <TeachersDashboard
+                      lessons={this.lessons}
+                      notifications={this.notifications}
+                    />
+                  )}
+                  {this.auth.type === "parent" && (
+                    <ParentDashboard
+                      homework={this.homework}
+                      notifications={this.notifications}
+                      marks={this.marks}
+                    />
+                  )}
                 </div>
               </div>
             </div>

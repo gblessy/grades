@@ -3,28 +3,28 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActons";
 
-class LessonRow extends Component {
+class HomeworkRow extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
   render() {
-    const { lesson } = this.props;
+    const { work } = this.props;
 
     return (
       <>
         <tr>
-          <th scope="row">{lesson.count}</th>
-          <td>{lesson.name}</td>
-          <td>{lesson.form}</td>
-          <td>{lesson.time}</td>
+          <th scope="row">{work.count}</th>
+          <td>{work.lesson}</td>
+          <td>{work.homework}</td>
+          <td>{work.book}</td>
         </tr>
       </>
     );
   }
 }
 
-LessonRow.propTypes = {
+HomeworkRow.propTypes = {
   auth: propTypes.object.isRequired
 };
 
@@ -35,4 +35,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCurrentProfile }
-)(LessonRow);
+)(HomeworkRow);
