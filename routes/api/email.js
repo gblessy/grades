@@ -4,9 +4,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  ""
-);
+sgMail.setApiKey("");
 // @route GET api/email/test
 // @desc  Test post route
 // @access  Public
