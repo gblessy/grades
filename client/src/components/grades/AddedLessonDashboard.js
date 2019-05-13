@@ -3,9 +3,9 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActons";
 
-import StudentRow from "./StudentRow";
+import StudentRow from "../../components/dashboard/StudentRow";
 
-class LessonDashboard extends Component {
+class AddedLessonDashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
@@ -16,7 +16,7 @@ class LessonDashboard extends Component {
     plan:
       "P3, pg. 41, Division of a numbers. How to divide. What to do with rest. Question, What happens is we multiply divided numbers?",
     students: [
-      { name: "joe", surname: "doe", grade: null },
+      { name: "joe", surname: "doe", grade: 4 },
       { name: "james", surname: "blant", grade: null },
       { name: "ennio", surname: "Morricone", grade: null },
       { name: "Garry", surname: "Moore", grade: null }
@@ -120,7 +120,7 @@ class LessonDashboard extends Component {
   }
 }
 
-LessonDashboard.propTypes = {
+AddedLessonDashboard.propTypes = {
   auth: propTypes.object.isRequired
 };
 
@@ -131,4 +131,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCurrentProfile }
-)(LessonDashboard);
+)(AddedLessonDashboard);

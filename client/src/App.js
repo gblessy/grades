@@ -23,6 +23,8 @@ import Schedule from "./components/schedule/Schedule";
 import LessonDashboard from "./components/dashboard/LessonDashboard";
 import AddTeacher from "./components/teacher/AddTeacher";
 import AddLesson from "./components/lessons/AddLesson";
+import AddGrade from "./components/grades/AddGrade";
+import AddedLessonDashboard from "./components/grades/AddedLessonDashboard";
 
 // Check for Token
 if (localStorage.jwtToken) {
@@ -63,6 +65,12 @@ class App extends Component {
             <Route exact path="/schedule" component={Schedule} />
             <Route exact path="/addlesson" component={AddLesson} />
             <Route exact path="/addteacher" component={AddTeacher} />
+            <Route exact path="/addgrade" component={AddGrade} />
+            <Route
+              exact
+              path="/addedlessondash"
+              component={AddedLessonDashboard}
+            />
             <Footer />
           </div>
         </Router>

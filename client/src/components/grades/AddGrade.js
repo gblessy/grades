@@ -5,12 +5,13 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser, logoutUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import { sendEmail } from "../../actions/mailActions";
 
-class AddLesson extends Component {
+class AddGrade extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
+      grade: "",
       email: "",
       password: "",
       password2: "",
@@ -20,6 +21,13 @@ class AddLesson extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  students = [
+    { name: "joe", surname: "doe", grade: null },
+    { name: "james", surname: "blant", grade: null },
+    { name: "ennio", surname: "Morricone", grade: null },
+    { name: "Garry", surname: "Moore", grade: null }
+  ];
 
   componentDidMount() {}
 
@@ -43,55 +51,33 @@ class AddLesson extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
+    sendEmail();
+    history.push("/addedlessondash");
 
-    this.props.registerUser(newUser, history);
-    this.props.logoutUser();
+    // this.props.registerUser(newUser, history);
+    // this.props.logoutUser();
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, student } = this.state;
 
     return (
       <div className="register">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Adding Lesson</h1>
+              <h1 className="display-4 text-center">
+                Add grade to {this.students[0].name} {this.students[0].surname}
+              </h1>
               <p className="lead text-center">Provide Lesson Details</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
+                  placeholder="Grade"
+                  name="grade"
                   type="text"
-                  value={this.state.name}
+                  value={this.state.grade}
                   onChange={this.onChange}
                   error={errors.name}
-                />
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                  info="This site uses Gravatar so if you want a profile image, use
-                  a Gravatar email"
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password2"
-                  type="password"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  error={errors.password2}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -103,7 +89,7 @@ class AddLesson extends Component {
   }
 }
 
-AddLesson.PropTypes = {
+AddGrade.PropTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -117,4 +103,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser, logoutUser }
-)(withRouter(AddLesson));
+)(withRouter(AddGrade));
