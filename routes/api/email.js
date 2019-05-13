@@ -5,7 +5,7 @@ const passport = require("passport");
 
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(
-  "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"
+  ""
 );
 // @route GET api/email/test
 // @desc  Test post route
